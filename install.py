@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin python3
 
 import sys
 from os import path
@@ -13,6 +13,6 @@ req_path = path.normpath(path.join(path.realpath(__file__), '../', 'requirements
 if not path.exists(req_path):
   sys.exit("[ERROR] Couldn't find a requirements.txt file, running git pull might resolve the issue") 
 else: 
-   sub = subprocess.run(f'pip install -r {req_path}'.split())
+   sub = subprocess.run(f'pip3 install -r {req_path}'.split())
    exit(0)
 
