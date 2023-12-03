@@ -6,7 +6,7 @@ import pickle
 import sys
 
 from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
+from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 from fmt_msg import GdocErr
@@ -37,10 +37,7 @@ class google_api():
 
                 if os.path.exists(self.credential_file):
                     try:
-                        flow = InstalledAppFlow.from_client_secrets_file(
-                            self.credential_file, self.SCOPES)
-
-                        self.creds = flow.run_local_server(port=0)
+                        self.creds = service_account.Credentials.from_service_account_file(self.credential_file, scopes=self.SCOPES)
 
                     except Exception as _:
                         #gdoc_err('Please provide a valid credentials file')
